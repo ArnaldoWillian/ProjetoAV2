@@ -3,19 +3,28 @@ package com.ProjetoProgAvan.ProjObra.model;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
-import com.ProjetoProgAvan.ProjObra.ObraRisco;
-import com.ProjetoProgAvan.ProjObra.ObraTipo;
+import com.ProjetoProgAvan.ProjObra.enum2.ObraRisco;
+import com.ProjetoProgAvan.ProjObra.enum2.ObraTipo;
 
 @Entity
 public class ObraDetalhesTecnicos {
 	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Enumerated(EnumType.STRING)
     private ObraTipo tipo;
 	@Enumerated(EnumType.STRING)
     private ObraRisco risco;
-   
+    @OneToOne
+	@JoinColumn(name = "obra_id",referencedColumnName = "id")
     private Obra obraId;
 
 	public ObraDetalhesTecnicos() {

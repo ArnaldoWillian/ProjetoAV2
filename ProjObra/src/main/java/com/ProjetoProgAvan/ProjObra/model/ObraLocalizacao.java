@@ -1,7 +1,15 @@
 package com.ProjetoProgAvan.ProjObra.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 public class ObraLocalizacao {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
     private String cidade;
@@ -11,7 +19,8 @@ public class ObraLocalizacao {
     private String latitude;
 	
     private String longitude;
-   
+    @OneToOne
+	@JoinColumn(name = "obra_id",referencedColumnName = "id")
     private Obra obraId;
     
     

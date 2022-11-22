@@ -3,12 +3,19 @@ package com.ProjetoProgAvan.ProjObra.model;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
-import com.ProjetoProgAvan.ProjObra.InspecaoFrequencia;
-import com.ProjetoProgAvan.ProjObra.InspecaoStatus;
+import com.ProjetoProgAvan.ProjObra.enum2.InspecaoFrequencia;
+import com.ProjetoProgAvan.ProjObra.enum2.InspecaoStatus;
 @Entity
 public class ObraInspecao {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Enumerated(EnumType.STRING)
     private InspecaoFrequencia frequencia;
@@ -18,7 +25,8 @@ public class ObraInspecao {
     private InspecaoStatus status;
     
     private Integer prioridade;
-    
+    @OneToOne
+	@JoinColumn(name = "obra_id",referencedColumnName = "id")
     private Obra obraId;
 
 	public ObraInspecao() {
