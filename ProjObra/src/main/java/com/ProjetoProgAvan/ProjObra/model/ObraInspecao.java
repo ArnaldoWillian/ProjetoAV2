@@ -1,5 +1,7 @@
 package com.ProjetoProgAvan.ProjObra.model;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,7 +18,7 @@ public class ObraInspecao {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private UUID id;
 	@Enumerated(EnumType.STRING)
     private InspecaoFrequencia frequencia;
     
@@ -32,7 +34,7 @@ public class ObraInspecao {
 	public ObraInspecao() {
 	}
 
-	public ObraInspecao(Integer id, InspecaoFrequencia frequencia, Integer mes, InspecaoStatus status,
+	public ObraInspecao(UUID id, InspecaoFrequencia frequencia, Integer mes, InspecaoStatus status,
 			Integer prioridade, Obra obraId) {
 		
 		this.id = id;
@@ -43,11 +45,11 @@ public class ObraInspecao {
 		this.obraId = obraId;
 	}
 
-	public Integer getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

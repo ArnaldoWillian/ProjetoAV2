@@ -1,5 +1,7 @@
 package com.ProjetoProgAvan.ProjObra.model;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,7 +12,7 @@ public class Obra {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private UUID id;
 	
     private String nome;
     
@@ -31,7 +33,7 @@ public class Obra {
 	public Obra() {
 	}
 
-	public Obra(Integer id, String nome, Integer anoConstrucao, String coordenacao, String gerencia, String diretoria,
+	public Obra(UUID id, String nome, Integer anoConstrucao, String coordenacao, String gerencia, String diretoria,
 			String outorga, String titularidade) {
 		
 		this.id = id;
@@ -44,11 +46,11 @@ public class Obra {
 		this.titularidade = titularidade;
 	}
 
-	public Integer getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

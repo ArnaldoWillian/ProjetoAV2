@@ -1,6 +1,7 @@
 package com.ProjetoProgAvan.ProjObra.model;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ public class Inspecao {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private UUID id;
 	
     private LocalDate date;
     
@@ -30,18 +31,18 @@ public class Inspecao {
 	public Inspecao() {
 	}
 
-	public Inspecao(Integer id, LocalDate date, String observacoes, ObraInspecao obraInspecaoId) {
+	public Inspecao(UUID id, LocalDate date, String observacoes, ObraInspecao obraInspecaoId) {
 		this.id = id;
 		this.date = date;
 		this.observacoes = observacoes;
 		this.obraInspecaoId = obraInspecaoId;
 	}
 
-	public Integer getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

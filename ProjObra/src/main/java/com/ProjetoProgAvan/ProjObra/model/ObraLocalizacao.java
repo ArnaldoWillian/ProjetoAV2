@@ -1,5 +1,7 @@
 package com.ProjetoProgAvan.ProjObra.model;
 
+import java.util.UUID;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,7 +12,7 @@ public class ObraLocalizacao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private UUID id;
 	
     private String cidade;
 	
@@ -25,7 +27,7 @@ public class ObraLocalizacao {
     
     
 
-	public ObraLocalizacao(Integer id, String cidade, String estado, String latitude, String longitude, Obra obraId) {
+	public ObraLocalizacao(UUID id, String cidade, String estado, String latitude, String longitude, Obra obraId) {
 		super();
 		this.id = id;
 		this.cidade = cidade;
@@ -35,11 +37,11 @@ public class ObraLocalizacao {
 		this.obraId = obraId;
 	}
 
-	public Integer getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 
