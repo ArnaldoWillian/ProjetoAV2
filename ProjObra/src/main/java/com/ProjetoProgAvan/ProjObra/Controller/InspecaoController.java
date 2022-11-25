@@ -4,16 +4,18 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 import org.springframework.beans.BeanUtils;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -62,9 +64,30 @@ public class InspecaoController {
     public ResponseEntity<Object> getOneProjObra(@PathVariable(value = "id") Integer id){
         Optional<Inspecao> inspecaoOptional = inspecaoServices.findById(id);
         if (!inspecaoOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Parking Spot not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Inspecao not found.");
         }
         return ResponseEntity.status(HttpStatus.OK).body(inspecaoOptional.get());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteProjObra(@PathVariable(value = "id") Integer id){
+        Optional<Inspecao> inspecaoOptional = inspecaoServices.findById(id);
+        if (!inspecaoOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Inspecao not found.");
+        }
+        inspecaoServices.delete(inspecaoOptional.get());
+        return ResponseEntity.status(HttpStatus.OK).body(" Inspecao deleted successfully.");
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateParkingSpot(@PathVariable(value = "id") UUID id,
+                                                    @RequestBody InspecaoDot inspecaoDot){
+        Optional<Inspecao> inspecaoOptional = InspecaoServices.findById(id);
+        if (!inspecaoOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Inspecao Spot not found.");
+        }
+        var inspecao = new Inspecao();
+       
+        return ResponseEntity.status(HttpStatus.OK).body(inspecaoServices.save(inspecao));
     }
 }
 
