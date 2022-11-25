@@ -2,7 +2,7 @@ package com.ProjetoProgAvan.ProjObra.dtos;
 
 import javax.validation.constraints.NotBlank;
 
-public class ObraLocalizacao {
+public class ObraLocalizacaoDot {
    
     @NotBlank
     private String cidade;

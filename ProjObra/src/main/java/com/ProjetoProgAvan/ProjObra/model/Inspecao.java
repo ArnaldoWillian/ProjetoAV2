@@ -1,6 +1,7 @@
 package com.ProjetoProgAvan.ProjObra.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -10,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
-
 
 
 @Entity
@@ -68,6 +68,9 @@ public class Inspecao {
 
 	public void setObraInspecaoId(ObraInspecao obraInspecaoId) {
 		this.obraInspecaoId = obraInspecaoId;
+	}
+
+	public static void setRegistrationDate(LocalDateTime localDateTime) {
 	}
 
 	
