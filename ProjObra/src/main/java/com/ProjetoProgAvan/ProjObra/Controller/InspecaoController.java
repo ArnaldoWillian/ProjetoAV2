@@ -30,7 +30,7 @@ public class InspecaoController {
         this.inspecaoServices = inspecaoServices;
     }
     @PostMapping
-    public ResponseEntity<Object> saveInspecao(@RequestBody @Valid InspecaoDot inspecaoDot){
+    public ResponseEntity<Object> saveInspecao(@RequestBody  InspecaoDot inspecaoDot){
         var inspecao = new Inspecao();
         BeanUtils.copyProperties(inspecaoDot, inspecao);
         inspecao.setRegistrationDate(LocalDateTime.now(ZoneId.of("UTC")));

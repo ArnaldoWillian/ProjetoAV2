@@ -2,7 +2,7 @@ package com.ProjetoProgAvan.ProjObra.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.UUID;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+
 
 
 @Entity
@@ -18,7 +18,7 @@ public class Inspecao {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private UUID id;
+	private Integer id;
 	
     private LocalDate date;
     
@@ -31,18 +31,18 @@ public class Inspecao {
 	public Inspecao() {
 	}
 
-	public Inspecao(UUID id, LocalDate date, String observacoes, ObraInspecao obraInspecaoId) {
+	public Inspecao(Integer id, LocalDate date, String observacoes, ObraInspecao obraInspecaoId) {
 		this.id = id;
 		this.date = date;
 		this.observacoes = observacoes;
 		this.obraInspecaoId = obraInspecaoId;
 	}
 
-	public UUID getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
