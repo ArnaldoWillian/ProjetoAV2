@@ -1,5 +1,7 @@
 package com.ProjetoProgAvan.ProjObra.services;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -37,6 +39,10 @@ public class ObraDetalhesTecnicosServices {
     @Transactional
     public ObraDetalhesTecnicos save(ObraDetalhesTecnicos obraDetalhesTecnicos) {
         return obraDetalhesTecnicosRepository.save(obraDetalhesTecnicos);
+    }
+
+    public List <ObraDetalhesTecnicos> findAll() {
+        return obraDetalhesTecnicosRepository.findAll();
     }
 
         
