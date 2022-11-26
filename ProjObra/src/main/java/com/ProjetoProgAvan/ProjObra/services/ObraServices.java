@@ -1,8 +1,5 @@
 package com.ProjetoProgAvan.ProjObra.services;
 
-
-
-
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +13,6 @@ import com.ProjetoProgAvan.ProjObra.model.Obra;
 @Service
 public class ObraServices {
 
-    
     final ObraRepository obraRepository;
 
     public ObraServices(ObraRepository obraRepository) {
@@ -60,7 +56,7 @@ public class ObraServices {
         return obraRepository.existsByCoordenacao(coordenacao);
     }
 
-    public List <Obra> findAll() {
+    public List<Obra> findAll() {
         return obraRepository.findAll();
     }
 
@@ -68,7 +64,9 @@ public class ObraServices {
         return obraRepository.findById(id);
     }
 
+    @Transactional
+    public void delete(Obra obra) {
+        obraRepository.delete(obra);
+    }
 
-
-    
 }

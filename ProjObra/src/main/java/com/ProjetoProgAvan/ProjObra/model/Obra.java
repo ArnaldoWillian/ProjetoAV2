@@ -1,7 +1,5 @@
 package com.ProjetoProgAvan.ProjObra.model;
 
-
-
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -11,33 +9,31 @@ import javax.persistence.Id;
 
 @Entity
 public class Obra {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-    private String nome;
-    
-    private Integer anoConstrucao;
-    
-    private String coordenacao;
-    
-    private String gerencia;
-    
-    private String diretoria;
-    
-    private String outorga;
-    
-    private String titularidade;
-    
-    
+
+	private String nome;
+
+	private Integer anoConstrucao;
+
+	private String coordenacao;
+
+	private String gerencia;
+
+	private String diretoria;
+
+	private String outorga;
+
+	private String titularidade;
 
 	public Obra() {
 	}
 
 	public Obra(Integer id, String nome, Integer anoConstrucao, String coordenacao, String gerencia, String diretoria,
 			String outorga, String titularidade) {
-		
+
 		this.id = id;
 		this.nome = nome;
 		this.anoConstrucao = anoConstrucao;
@@ -115,10 +111,4 @@ public class Obra {
 	public static void setRegistrationDate(LocalDateTime now) {
 	}
 
-	
-		
-	}
-    
-    
-    
-
+}
