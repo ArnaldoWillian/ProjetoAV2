@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,7 +44,7 @@ public class ObraInspecaoController {
         if (obraInspecaoServices.existsByMes(obraInspecaoDot.getMes())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Mes is already in use!");
         }
-        if (obraInspecaoServices.existsByStatusAndObraId(obraInspecaoDot.getStatus(), obraInspecaoDot.getObraId())) {
+        if (obraInspecaoServices.existsByStatus(obraInspecaoDot.getStatus())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Status is already in use!!");
         }
         if (obraInspecaoServices.existsByPrioridade(obraInspecaoDot.getPrioridade())) {
@@ -68,7 +69,7 @@ public class ObraInspecaoController {
     public ResponseEntity<Object> getOneProjObra(@PathVariable(value = "id") Integer id) {
         Optional<ObraInspecao> obraInspecaoOptional = obraInspecaoServices.findById(id);
         if (!obraInspecaoOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Obra not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Obrainspecao not found.");
         }
         return ResponseEntity.status(HttpStatus.OK).body(obraInspecaoOptional.get());
     }
@@ -76,9 +77,26 @@ public class ObraInspecaoController {
     public ResponseEntity<Object> deleteProjObra(@PathVariable(value = "id") Integer id){
         Optional<ObraInspecao> obraInspecaoOptional = obraInspecaoServices.findById(id);
         if (!obraInspecaoOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Obra not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Obrainspecao not found.");
         }
         obraInspecaoServices.delete(obraInspecaoOptional.get());
-        return ResponseEntity.status(HttpStatus.OK).body(" Obra deleted successfully.");
+        return ResponseEntity.status(HttpStatus.OK).body(" Obrainspecao deleted successfully.");
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateProjObra(@PathVariable(value = "id") Integer id,
+                                                    @RequestBody ObraInspecaoDot obraInspecaoDot){
+        Optional<ObraInspecao> obraInspecaoOptional = obraInspecaoServices.findById(id);
+        if (!obraInspecaoOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Obrainspecao Spot not found.");
+        }
+        var ObraInspecao = obraInspecaoOptional.get();
+        ObraInspecao.setId(obraInspecaoDot.getId());
+        ObraInspecao.setFrequencia(obraInspecaoDot.getFrequencia());
+        ObraInspecao.setMes(obraInspecaoDot.getMes());
+        ObraInspecao.setStatus(obraInspecaoDot.getStatus());
+        ObraInspecao.setPrioridade(obraInspecaoDot.getPrioridade());
+        ObraInspecao.setObraId(obraInspecaoDot.getObraId());
+    
+        return ResponseEntity.status(HttpStatus.OK).body(obraInspecaoServices.save(ObraInspecao));
     }
 }
