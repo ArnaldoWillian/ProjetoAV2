@@ -1,9 +1,11 @@
 package com.ProjetoProgAvan.ProjObra.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Service;
 
 import com.ProjetoProgAvan.ProjObra.Repository.ObraDetalhesTecnicosRepository;
@@ -43,6 +45,14 @@ public class ObraDetalhesTecnicosServices {
 
     public List <ObraDetalhesTecnicos> findAll() {
         return obraDetalhesTecnicosRepository.findAll();
+    }
+
+    public Optional<ObraDetalhesTecnicos> findById(Integer id) {
+        return obraDetalhesTecnicosRepository.findById(id);
+    }
+
+    public void delete(ObraDetalhesTecnicos obraDetalhesTecnicos) {
+        obraDetalhesTecnicosRepository.delete(obraDetalhesTecnicos);
     }
 
         
