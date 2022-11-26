@@ -63,6 +63,10 @@ public class ObraInspecaoServices {
         return obraInspecaoRepository.existsByStatusAndObraId(status, obraId);
     }
 
+    public void delete(ObraInspecao obraInspecao) {
+        obraInspecaoRepository.delete(obraInspecao);
+    }
+
    
 
    
