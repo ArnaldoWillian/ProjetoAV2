@@ -4,6 +4,9 @@ package com.ProjetoProgAvan.ProjObra.services;
 
 
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import com.ProjetoProgAvan.ProjObra.Repository.ObraRepository;
@@ -54,6 +57,10 @@ public class ObraServices {
 
     public boolean existsByCoordenacao(String coordenacao) {
         return obraRepository.existsByCoordenacao(coordenacao);
+    }
+
+    public List <Obra> findAll() {
+        return obraRepository.findAll();
     }
 
 
