@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -70,9 +71,25 @@ public class ObraDetalhesTecnicosController {
     public ResponseEntity<Object> deleteProjObra(@PathVariable(value = "id") Integer id){
         Optional<ObraDetalhesTecnicos> obraDetalhesTecnicosOptional = obraDetalhesTecnicosServices.findById(id);
         if (!obraDetalhesTecnicosOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Obrainspecao not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ObraDetalhesTecnicos not found.");
         }
         obraDetalhesTecnicosServices.delete(obraDetalhesTecnicosOptional.get());
-        return ResponseEntity.status(HttpStatus.OK).body(" Obrainspecao deleted successfully.");
+        return ResponseEntity.status(HttpStatus.OK).body(" ObraDetalhesTecnicos deleted successfully.");
+    }
+    
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateProjObra(@PathVariable(value = "id") Integer id,
+                                                    @RequestBody ObraDetalhesTecnicosDot obraDetalhesTecnicosDot){
+        Optional<ObraDetalhesTecnicos> obraDetalhesTecnicosOptional = obraDetalhesTecnicosServices.findById(id);
+        if (!obraDetalhesTecnicosOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ObraDetalhesTecnicos Spot not found.");
+        }
+        var ObraDetalhesTecnicos = obraDetalhesTecnicosOptional.get();
+        ObraDetalhesTecnicos.setId(obraDetalhesTecnicosDot.getId());
+        ObraDetalhesTecnicos.setTipo(obraDetalhesTecnicosDot.getTipo());
+        ObraDetalhesTecnicos.setRisco(obraDetalhesTecnicosDot.getRisco());
+        ObraDetalhesTecnicos.setObraId(obraDetalhesTecnicosDot.getObraId());
+    
+        return ResponseEntity.status(HttpStatus.OK).body(obraDetalhesTecnicosServices.save(ObraDetalhesTecnicos));
     }
 }
