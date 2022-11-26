@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 
+
 import org.springframework.beans.BeanUtils;
 
 import org.springframework.http.HttpStatus;
@@ -38,7 +39,7 @@ public class InspecaoController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> saveInspecao(@RequestBody InspecaoDot inspecaoDot) {
+    public ResponseEntity<Object> saveProjObra(@RequestBody InspecaoDot inspecaoDot) {
         if (inspecaoServices.existsById(inspecaoDot.getId())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: ID is already in use!");
         }
@@ -79,14 +80,18 @@ public class InspecaoController {
         return ResponseEntity.status(HttpStatus.OK).body(" Inspecao deleted successfully.");
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateParkingSpot(@PathVariable(value = "id") UUID id,
+    public ResponseEntity<Object> updateProjObra(@PathVariable(value = "id") Integer id,
                                                     @RequestBody InspecaoDot inspecaoDot){
-        Optional<Inspecao> inspecaoOptional = InspecaoServices.findById(id);
+        Optional<Inspecao> inspecaoOptional = inspecaoServices.findById(id);
         if (!inspecaoOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Inspecao Spot not found.");
         }
-        var inspecao = new Inspecao();
-       
+        var inspecao = inspecaoOptional.get();
+        inspecao.setId(inspecaoDot.getId());
+        inspecao.setDate(inspecaoDot.getDate());
+        inspecao.setObservacoes(inspecaoDot.getObservacoes());
+        inspecao.setObraInspecaoId(inspecaoDot.getObraInspecaoId());
+    
         return ResponseEntity.status(HttpStatus.OK).body(inspecaoServices.save(inspecao));
     }
 }
