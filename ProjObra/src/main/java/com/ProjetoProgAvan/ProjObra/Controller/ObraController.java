@@ -3,12 +3,14 @@ package com.ProjetoProgAvan.ProjObra.Controller;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,6 +69,14 @@ public class ObraController {
          return ResponseEntity.status(HttpStatus.OK).body(obraServices.findAll());
      }
 
+     @GetMapping("/{id}")
+     public ResponseEntity<Object> getOneProjObra(@PathVariable(value = "id") Integer id){
+         Optional<Obra> obraOptional = obraServices.findById(id);
+         if (!obraOptional.isPresent()) {
+             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Obra not found.");
+         }
+         return ResponseEntity.status(HttpStatus.OK).body(obraOptional.get());
+     }
      
     }
 

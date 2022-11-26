@@ -6,6 +6,7 @@ package com.ProjetoProgAvan.ProjObra.services;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -61,6 +62,10 @@ public class ObraServices {
 
     public List <Obra> findAll() {
         return obraRepository.findAll();
+    }
+
+    public Optional<Obra> findById(Integer id) {
+        return obraRepository.findById(id);
     }
 
 
