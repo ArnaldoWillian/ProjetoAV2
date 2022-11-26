@@ -11,6 +11,19 @@ public class ObraDetalhesTecnicosDot {
     private  ObraTipo tipo;
 	@NotBlank
     private ObraRisco risco;
+    
+    public ObraTipo getTipo() {
+        return tipo;
+    }
+    public void setTipo(ObraTipo tipo) {
+        this.tipo = tipo;
+    }
+    public ObraRisco getRisco() {
+        return risco;
+    }
+    public void setRisco(ObraRisco risco) {
+        this.risco = risco;
+    }
    
     
 }

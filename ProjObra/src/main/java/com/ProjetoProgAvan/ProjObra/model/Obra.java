@@ -2,6 +2,8 @@ package com.ProjetoProgAvan.ProjObra.model;
 
 
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -108,6 +110,9 @@ public class Obra {
 
 	public void setTitularidade(String titularidade) {
 		this.titularidade = titularidade;
+	}
+
+	public static void setRegistrationDate(LocalDateTime now) {
 	}
 
 	
