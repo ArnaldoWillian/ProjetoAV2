@@ -1,6 +1,7 @@
 package com.ProjetoProgAvan.ProjObra.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -52,6 +53,14 @@ public class ObraLocalizacaoServices {
         return obraLocalizacaoReposiroty.findAll();
     }
 
+    public Optional<ObraLocalizacao> findById(Integer id) {
+        return obraLocalizacaoReposiroty.findById(id);
+    }
+
+    @Transactional
+    public void delete(ObraLocalizacao obraLocalizacao) {
+        obraLocalizacaoReposiroty.delete(obraLocalizacao);
+    }
     
     
 }

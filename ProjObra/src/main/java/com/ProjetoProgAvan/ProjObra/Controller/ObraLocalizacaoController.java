@@ -3,12 +3,15 @@ package com.ProjetoProgAvan.ProjObra.Controller;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,13 +58,29 @@ public class ObraLocalizacaoController {
         BeanUtils.copyProperties(ObraLocalizacaoDot, obraLocalizacao);
         ObraLocalizacao.setRegistrationDate(LocalDateTime.now(ZoneId.of("UTC")));
         return ResponseEntity.status(HttpStatus.CREATED).body(obraLocalizacaoServices.save(obraLocalizacao));
-        }
-        
-        @GetMapping
-        public ResponseEntity<Object> getAllProjObras() {
-            return ResponseEntity.status(HttpStatus.OK).body(obraLocalizacaoServices.findAll());
-        }
-    
-
     }
 
+    @GetMapping
+    public ResponseEntity<Object> getAllProjObras() {
+        return ResponseEntity.status(HttpStatus.OK).body(obraLocalizacaoServices.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getOneProjObra(@PathVariable(value = "id") Integer id) {
+        Optional<ObraLocalizacao> ObraLocalizacaoOptional = obraLocalizacaoServices.findById(id);
+        if (!ObraLocalizacaoOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Obra not found.");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(ObraLocalizacaoOptional.get());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteProjObra(@PathVariable(value = "id") Integer id) {
+        Optional<ObraLocalizacao> obraLocalizacaoOptional = obraLocalizacaoServices.findById(id);
+        if (!obraLocalizacaoOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Obra not found.");
+        }
+        obraLocalizacaoServices.delete(obraLocalizacaoOptional.get());
+        return ResponseEntity.status(HttpStatus.OK).body(" Obra deleted successfully.");
+    }
+}
