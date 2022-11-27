@@ -78,9 +78,9 @@ public class ObraLocalizacaoController {
     public ResponseEntity<Object> deleteProjObra(@PathVariable(value = "id") Integer id) {
         Optional<ObraLocalizacao> obraLocalizacaoOptional = obraLocalizacaoServices.findById(id);
         if (!obraLocalizacaoOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Obra not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ObraLocalizacao not found.");
         }
         obraLocalizacaoServices.delete(obraLocalizacaoOptional.get());
-        return ResponseEntity.status(HttpStatus.OK).body(" Obra deleted successfully.");
+        return ResponseEntity.status(HttpStatus.OK).body(" ObObraLocalizacaora deleted successfully.");
     }
 }
