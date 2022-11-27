@@ -2,8 +2,12 @@ package com.ProjetoProgAvan.ProjObra.dtos;
 
 import javax.validation.constraints.NotBlank;
 
+import com.ProjetoProgAvan.ProjObra.model.Obra;
+
 public class ObraLocalizacaoDot {
    
+    @NotBlank
+    private Integer id;
     @NotBlank
     private String cidade;
 	@NotBlank
@@ -12,7 +16,23 @@ public class ObraLocalizacaoDot {
     private String latitude;
 	@NotBlank
     private String longitude;
+    @NotBlank
+    private Obra obraId;
     
+    
+    
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public Obra getObraId() {
+        return obraId;
+    }
+    public void setObraId(Obra obraId) {
+        this.obraId = obraId;
+    }
     public String getCidade() {
         return cidade;
     }
