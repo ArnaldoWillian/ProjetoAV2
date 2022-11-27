@@ -1,7 +1,5 @@
 package com.ProjetoProgAvan.ProjObra.model;
 
-
-
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -17,23 +15,23 @@ public class ObraLocalizacao {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-    private String cidade;
-	
-    private String estado;
 
-    private String latitude;
-	
-    private String longitude;
-    @OneToOne
-	@JoinColumn(name = "obra_id",referencedColumnName = "id")
-    private Obra obraId;
-    
-    public ObraLocalizacao() {
-    }
+	private String cidade;
+
+	private String estado;
+
+	private String latitude;
+
+	private String longitude;
+	@OneToOne
+	@JoinColumn(name = "obra_id", referencedColumnName = "id")
+	private Obra obraId;
+
+	public ObraLocalizacao() {
+	}
 
 	public ObraLocalizacao(Integer id, String cidade, String estado, String latitude, String longitude, Obra obraId) {
-		
+
 		this.id = id;
 		this.cidade = cidade;
 		this.estado = estado;
@@ -42,9 +40,7 @@ public class ObraLocalizacao {
 		this.obraId = obraId;
 	}
 
-	
-
-    public Integer getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -94,7 +90,5 @@ public class ObraLocalizacao {
 
 	public static void setRegistrationDate(LocalDateTime now) {
 	}
-    
-    
-    
+
 }

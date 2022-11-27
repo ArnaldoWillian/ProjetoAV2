@@ -37,6 +37,7 @@ public class ObraInspecaoServices {
     public boolean existsByPrioridade(Integer prioridade) {
         return obraInspecaoRepository.existsByPrioridade(prioridade);
     }
+
     public boolean existsByObraId(Obra obraId) {
         return obraInspecaoRepository.existsByObraId(obraId);
     }
@@ -44,14 +45,13 @@ public class ObraInspecaoServices {
     public boolean existsById(Integer id) {
         return obraInspecaoRepository.existsById(id);
     }
-   
 
     @Transactional
     public ObraInspecao save(ObraInspecao obraInspecao) {
         return obraInspecaoRepository.save(obraInspecao);
     }
 
-    public List <ObraInspecao> findAll() {
+    public List<ObraInspecao> findAll() {
         return obraInspecaoRepository.findAll();
     }
 
@@ -67,10 +67,4 @@ public class ObraInspecaoServices {
         obraInspecaoRepository.delete(obraInspecao);
     }
 
-   
-
-   
-    
-    }
-    
-
+}

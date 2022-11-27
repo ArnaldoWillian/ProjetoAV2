@@ -1,7 +1,5 @@
 package com.ProjetoProgAvan.ProjObra.model;
 
-
-
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -15,30 +13,31 @@ import javax.persistence.OneToOne;
 
 import com.ProjetoProgAvan.ProjObra.enum2.InspecaoFrequencia;
 import com.ProjetoProgAvan.ProjObra.enum2.InspecaoStatus;
+
 @Entity
 public class ObraInspecao {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Enumerated(EnumType.STRING)
-    private InspecaoFrequencia frequencia;
-    
-    private Integer mes;
-    @Enumerated(EnumType.STRING)
-    private InspecaoStatus status;
-    
-    private Integer prioridade;
-    @OneToOne
-	@JoinColumn(name = "obra_id",referencedColumnName = "id")
-    private Obra obraId;
+	private InspecaoFrequencia frequencia;
+
+	private Integer mes;
+	@Enumerated(EnumType.STRING)
+	private InspecaoStatus status;
+
+	private Integer prioridade;
+	@OneToOne
+	@JoinColumn(name = "obra_id", referencedColumnName = "id")
+	private Obra obraId;
 
 	public ObraInspecao() {
 	}
 
 	public ObraInspecao(Integer id, InspecaoFrequencia frequencia, Integer mes, InspecaoStatus status,
 			Integer prioridade, Obra obraId) {
-		
+
 		this.id = id;
 		this.frequencia = frequencia;
 		this.mes = mes;
@@ -98,6 +97,4 @@ public class ObraInspecao {
 	public static void setRegistrationDate(LocalDateTime now) {
 	}
 
-    
-    
 }

@@ -17,28 +17,35 @@ public class InspecaoDot {
     private String observacoes;
     @NotBlank
     private ObraInspecao obraInspecaoId;
-    
+
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
+
     public LocalDate getDate() {
         return date;
     }
+
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
     public String getObservacoes() {
         return observacoes;
     }
+
     public void setObservacoes(String observacoes) {
         this.observacoes = observacoes;
     }
+
     public ObraInspecao getObraInspecaoId() {
         return obraInspecaoId;
     }
+
     public void setObraInspecaoId(ObraInspecao obraInspecaoId) {
         this.obraInspecaoId = obraInspecaoId;
     }

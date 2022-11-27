@@ -73,8 +73,9 @@ public class ObraInspecaoController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(obraInspecaoOptional.get());
     }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteProjObra(@PathVariable(value = "id") Integer id){
+    public ResponseEntity<Object> deleteProjObra(@PathVariable(value = "id") Integer id) {
         Optional<ObraInspecao> obraInspecaoOptional = obraInspecaoServices.findById(id);
         if (!obraInspecaoOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Obrainspecao not found.");
@@ -82,9 +83,10 @@ public class ObraInspecaoController {
         obraInspecaoServices.delete(obraInspecaoOptional.get());
         return ResponseEntity.status(HttpStatus.OK).body(" Obrainspecao deleted successfully.");
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateProjObra(@PathVariable(value = "id") Integer id,
-                                                    @RequestBody ObraInspecaoDot obraInspecaoDot){
+            @RequestBody ObraInspecaoDot obraInspecaoDot) {
         Optional<ObraInspecao> obraInspecaoOptional = obraInspecaoServices.findById(id);
         if (!obraInspecaoOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Obrainspecao Spot not found.");
@@ -96,7 +98,7 @@ public class ObraInspecaoController {
         ObraInspecao.setStatus(obraInspecaoDot.getStatus());
         ObraInspecao.setPrioridade(obraInspecaoDot.getPrioridade());
         ObraInspecao.setObraId(obraInspecaoDot.getObraId());
-    
+
         return ResponseEntity.status(HttpStatus.OK).body(obraInspecaoServices.save(ObraInspecao));
     }
 }

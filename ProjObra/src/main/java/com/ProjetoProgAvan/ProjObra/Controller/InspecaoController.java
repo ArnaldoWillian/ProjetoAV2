@@ -5,8 +5,6 @@ import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 
-
-
 import org.springframework.beans.BeanUtils;
 
 import org.springframework.http.HttpStatus;
@@ -24,8 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ProjetoProgAvan.ProjObra.dtos.InspecaoDot;
 import com.ProjetoProgAvan.ProjObra.model.Inspecao;
 import com.ProjetoProgAvan.ProjObra.services.InspecaoServices;
-
-
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -46,8 +42,10 @@ public class InspecaoController {
         if (inspecaoServices.existsByDate(inspecaoDot.getDate())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: DATE is already in use!");
         }
-        if (inspecaoServices.existsByObservacoesAndObraInspecaoId(inspecaoDot.getObservacoes(), inspecaoDot.getObraInspecaoId())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Observation is already registered for this Observation/Work Inspection id!");
+        if (inspecaoServices.existsByObservacoesAndObraInspecaoId(inspecaoDot.getObservacoes(),
+                inspecaoDot.getObraInspecaoId())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("Conflict: Observation is already registered for this Observation/Work Inspection id!");
         }
 
         var inspecao = new Inspecao();
@@ -60,9 +58,9 @@ public class InspecaoController {
     public ResponseEntity<List<Inspecao>> getAllProjObras() {
         return ResponseEntity.status(HttpStatus.OK).body(inspecaoServices.findAll());
     }
-    
+
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getOneProjObra(@PathVariable(value = "id") Integer id){
+    public ResponseEntity<Object> getOneProjObra(@PathVariable(value = "id") Integer id) {
         Optional<Inspecao> inspecaoOptional = inspecaoServices.findById(id);
         if (!inspecaoOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Inspecao not found.");
@@ -71,7 +69,7 @@ public class InspecaoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteProjObra(@PathVariable(value = "id") Integer id){
+    public ResponseEntity<Object> deleteProjObra(@PathVariable(value = "id") Integer id) {
         Optional<Inspecao> inspecaoOptional = inspecaoServices.findById(id);
         if (!inspecaoOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Inspecao not found.");
@@ -79,9 +77,10 @@ public class InspecaoController {
         inspecaoServices.delete(inspecaoOptional.get());
         return ResponseEntity.status(HttpStatus.OK).body(" Inspecao deleted successfully.");
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateProjObra(@PathVariable(value = "id") Integer id,
-                                                    @RequestBody InspecaoDot inspecaoDot){
+            @RequestBody InspecaoDot inspecaoDot) {
         Optional<Inspecao> inspecaoOptional = inspecaoServices.findById(id);
         if (!inspecaoOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Inspecao Spot not found.");
@@ -91,8 +90,7 @@ public class InspecaoController {
         inspecao.setDate(inspecaoDot.getDate());
         inspecao.setObservacoes(inspecaoDot.getObservacoes());
         inspecao.setObraInspecaoId(inspecaoDot.getObraInspecaoId());
-    
+
         return ResponseEntity.status(HttpStatus.OK).body(inspecaoServices.save(inspecao));
     }
 }
-

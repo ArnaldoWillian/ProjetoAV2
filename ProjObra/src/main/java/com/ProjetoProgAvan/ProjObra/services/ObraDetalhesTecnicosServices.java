@@ -38,12 +38,13 @@ public class ObraDetalhesTecnicosServices {
     public boolean existsByRisco(ObraRisco risco) {
         return obraDetalhesTecnicosRepository.existsByRisco(risco);
     }
+
     @Transactional
     public ObraDetalhesTecnicos save(ObraDetalhesTecnicos obraDetalhesTecnicos) {
         return obraDetalhesTecnicosRepository.save(obraDetalhesTecnicos);
     }
 
-    public List <ObraDetalhesTecnicos> findAll() {
+    public List<ObraDetalhesTecnicos> findAll() {
         return obraDetalhesTecnicosRepository.findAll();
     }
 
@@ -55,5 +56,4 @@ public class ObraDetalhesTecnicosServices {
         obraDetalhesTecnicosRepository.delete(obraDetalhesTecnicos);
     }
 
-        
 }

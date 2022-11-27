@@ -3,7 +3,6 @@ package com.ProjetoProgAvan.ProjObra.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,23 +10,20 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-
-
 @Entity
 public class Inspecao {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-    private LocalDate date;
-    
-    private String observacoes;
-    @ManyToOne
-	@JoinColumn(name = "obra_inspecao_id",referencedColumnName = "id")
-    private ObraInspecao obraInspecaoId;
-	
-	
+
+	private LocalDate date;
+
+	private String observacoes;
+	@ManyToOne
+	@JoinColumn(name = "obra_inspecao_id", referencedColumnName = "id")
+	private ObraInspecao obraInspecaoId;
+
 	public Inspecao() {
 	}
 
@@ -73,5 +69,4 @@ public class Inspecao {
 	public static void setRegistrationDate(LocalDateTime localDateTime) {
 	}
 
-	
 }

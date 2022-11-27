@@ -49,7 +49,7 @@ public class ObraLocalizacaoServices {
         return obraLocalizacaoReposiroty.save(obraLocalizacao);
     }
 
-    public List <ObraLocalizacao> findAll() {
+    public List<ObraLocalizacao> findAll() {
         return obraLocalizacaoReposiroty.findAll();
     }
 
@@ -61,6 +61,5 @@ public class ObraLocalizacaoServices {
     public void delete(ObraLocalizacao obraLocalizacao) {
         obraLocalizacaoReposiroty.delete(obraLocalizacao);
     }
-    
-    
+
 }

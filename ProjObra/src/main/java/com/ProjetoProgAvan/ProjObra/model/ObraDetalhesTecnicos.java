@@ -1,7 +1,5 @@
 package com.ProjetoProgAvan.ProjObra.model;
 
-
-
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -18,26 +16,24 @@ import com.ProjetoProgAvan.ProjObra.enum2.ObraTipo;
 
 @Entity
 public class ObraDetalhesTecnicos {
-	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Enumerated(EnumType.STRING)
-    private ObraTipo tipo;
+	private ObraTipo tipo;
 	@Enumerated(EnumType.STRING)
-    private ObraRisco risco;
-    @OneToOne
-	@JoinColumn(name = "obra_id",referencedColumnName = "id")
-    private Obra obraId;
+	private ObraRisco risco;
+	@OneToOne
+	@JoinColumn(name = "obra_id", referencedColumnName = "id")
+	private Obra obraId;
 
 	public ObraDetalhesTecnicos() {
-		
-		
+
 	}
 
 	public ObraDetalhesTecnicos(Integer id, ObraTipo tipo, ObraRisco risco, Obra obraId) {
-		
+
 		this.id = id;
 		this.tipo = tipo;
 		this.risco = risco;
@@ -79,5 +75,4 @@ public class ObraDetalhesTecnicos {
 	public static void setRegistrationDate(LocalDateTime now) {
 	}
 
-    
 }

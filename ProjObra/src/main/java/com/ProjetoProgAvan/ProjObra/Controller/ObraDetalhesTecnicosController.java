@@ -54,11 +54,12 @@ public class ObraDetalhesTecnicosController {
         ObraDetalhesTecnicos.setRegistrationDate(LocalDateTime.now(ZoneId.of("UTC")));
         return ResponseEntity.status(HttpStatus.CREATED).body(obraDetalhesTecnicosServices.save(obraDetalhesTecnicos));
     }
+
     @GetMapping
     public ResponseEntity<Object> getAllProjObras() {
         return ResponseEntity.status(HttpStatus.OK).body(obraDetalhesTecnicosServices.findAll());
     }
-    
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> getOneProjObra(@PathVariable(value = "id") Integer id) {
         Optional<ObraDetalhesTecnicos> obraDetalhesTecnicosOptional = obraDetalhesTecnicosServices.findById(id);
@@ -67,8 +68,9 @@ public class ObraDetalhesTecnicosController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(obraDetalhesTecnicosOptional.get());
     }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteProjObra(@PathVariable(value = "id") Integer id){
+    public ResponseEntity<Object> deleteProjObra(@PathVariable(value = "id") Integer id) {
         Optional<ObraDetalhesTecnicos> obraDetalhesTecnicosOptional = obraDetalhesTecnicosServices.findById(id);
         if (!obraDetalhesTecnicosOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ObraDetalhesTecnicos not found.");
@@ -76,10 +78,10 @@ public class ObraDetalhesTecnicosController {
         obraDetalhesTecnicosServices.delete(obraDetalhesTecnicosOptional.get());
         return ResponseEntity.status(HttpStatus.OK).body(" ObraDetalhesTecnicos deleted successfully.");
     }
-    
+
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateProjObra(@PathVariable(value = "id") Integer id,
-                                                    @RequestBody ObraDetalhesTecnicosDot obraDetalhesTecnicosDot){
+            @RequestBody ObraDetalhesTecnicosDot obraDetalhesTecnicosDot) {
         Optional<ObraDetalhesTecnicos> obraDetalhesTecnicosOptional = obraDetalhesTecnicosServices.findById(id);
         if (!obraDetalhesTecnicosOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ObraDetalhesTecnicos Spot not found.");
@@ -89,7 +91,7 @@ public class ObraDetalhesTecnicosController {
         ObraDetalhesTecnicos.setTipo(obraDetalhesTecnicosDot.getTipo());
         ObraDetalhesTecnicos.setRisco(obraDetalhesTecnicosDot.getRisco());
         ObraDetalhesTecnicos.setObraId(obraDetalhesTecnicosDot.getObraId());
-    
+
         return ResponseEntity.status(HttpStatus.OK).body(obraDetalhesTecnicosServices.save(ObraDetalhesTecnicos));
     }
 }
