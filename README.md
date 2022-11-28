@@ -9,7 +9,7 @@
   	José Gabriel de Melo Mendonça Mat: 01453018
   	Lucas Soares Ribeiro Salvino Bezerra Mat: 01457146 
 
-###Collaborator
+### Collaborator
   	Jonathas Xavier Freitas** - *Collaborator* - Mat: 01403089 - [JonathasXavier](https://github.com/JonathasXavier)
   	José Milton de Oliveira Neto** - *Collaborator* - [Noltim](https://github.com/Noltim)
 
@@ -20,7 +20,7 @@
     MySQL
 
 
-### Class
+## Class
 
 - [x] Model
 - [x] Enum
@@ -29,7 +29,7 @@
 - [x] Controller
 - [x] DTO
 
-### 
+
 
 
 
